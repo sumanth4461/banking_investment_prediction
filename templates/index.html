@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Investment Analysis</title>
+    <style>
+        /* Universal Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fb;
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            background-image: url('https://imgs.search.brave.com/8bv6jrOEw8unEnyEWJUoKjR8Um27HskKeLFPx_438xU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQ5/MjE4OTY3Ny9waG90/by9iYW5rLXN5bWJv/bC13aXRoLXdpdGgt/Y29pbnMtc3RhY2st/Y29uY2VwdHMtb2Yt/dGhlLWJhbmtpbmct/c3lzdGVtLXJpc2lu/Zy1pbnRlcmVzdC1y/YXRlcy53ZWJwP2E9/MSZiPTEmcz02MTJ4/NjEyJnc9MCZrPTIw/JmM9RzUzZkMwc0tJ/YllzNkR0NXNoTFRi/WlNnQ3Q4VWZoVlZr/WXJBdkVTaHNGUT0');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;  /* Allow scrolling background */
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        header nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 10px;
+        }
+
+        header nav ul li {
+            list-style: none;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #3498db;
+        }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Main Section */
+        main {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Form Section */
+        #data-form-section {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 30px;
+            transition: box-shadow 0.3s ease;
+            transform: translateY(0);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        #data-form-section:hover {
+            box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15);
+        }
+
+        #data-form-section h2 {
+            text-align: center;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #34495e;
+            margin-bottom: 8px;
+        }
+
+        input, select, button {
+            font-size: 1rem;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+
+        input, select {
+            background-color: #f9f9f9;
+        }
+
+        input:focus, select:focus {
+            background-color: #ffffff;
+            border-color: #3498db;
+            outline: none;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            grid-column: span 2;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Prediction Table Section */
+        #prediction-table-section {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 50px;
+            transition: box-shadow 0.3s ease;
+            transform: translateY(0);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        #prediction-table-section:hover {
+            box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15);
+        }
+
+        #prediction-table-section h2 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        th {
+            background-color: #f4f7fb;
+            color: #34495e;
+            font-weight: 600;
+        }
+
+        td {
+            background-color: #ffffff;
+            color: #555;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover td {
+            background-color: #f1f1f1;
+            transform: translateY(-3px);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            button {
+                grid-column: span 1;
+                width: 100%;
+            }
+
+            .logout-btn {
+                width: 100%;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Button Animations */
+        button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%) scale(1);
+            transition: transform 0.4s ease;
+            border-radius: 50%;
+        }
+
+        button:hover::before {
+            transform: translate(-50%, -50%) scale(0);
+        }
+    </style>
+
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Banking – Investment Prediction</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Project</a></li>
+                <li><a href="/projects">Projects by Members</a></li>
+                <li><a href="/prediction">Prediction</a></li>
+                <li><button onclick="window.location.href='/logout'" class="logout-btn">Log Out</button></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="data-form-section">
+        <h2>Bank Investment Prediction</h2>
+        <form id="data-form">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="job">Job:</label>
+            <select id="job" name="job" required>
+                <option value="0">Admin</option>
+                <option value="1">Blue-collar</option>
+                <option value="2">Entrepreneur</option>
+                <option value="3">Housemaid</option>
+                <option value="4">Management</option>
+                <option value="5">Retired</option>
+                <option value="6">Self-employed</option>
+                <option value="7">Services</option>
+                <option value="8">Student</option>
+                <option value="9">Technician</option>
+                <option value="10">Unemployed</option>
+                <option value="11">Unknown</option>
+            </select>
+
+            <label for="marital">Marital:</label>
+            <select id="marital" name="marital" required>
+                <option value="0">Divorced</option>
+                <option value="1">Married</option>
+                <option value="2">Single</option>
+                <option value="3">Unknown</option>
+            </select>
+
+            <label for="education">Education:</label>
+            <select id="education" name="education" required>
+                <option value="0">Basic 4y</option>
+                <option value="1">Basic 6y</option>
+                <option value="2">Basic 9y</option>
+                <option value="3">High School</option>
+                <option value="4">Illiterate</option>
+                <option value="5">Professional Course</option>
+                <option value="6">University Degree</option>
+                <option value="7">Unknown</option>
+            </select>
+
+            <label for="isDefault">Default (Yes/No):</label>
+            <select id="isDefault" name="isDefault" required>
+                <option value="0">No</option>
+                <option value="1">Unknown</option>
+                <option value="2">Yes</option>
+            </select>
+
+            <label for="hasHousingLoan">Housing Loan (Yes/No):</label>
+            <select id="hasHousingLoan" name="hasHousingLoan" required>
+                <option value="0">No</option>
+                <option value="1">Unknown</option>
+                <option value="2">Yes</option>
+            </select>
+
+            <label for="hasPersonalLoan">Personal Loan (Yes/No):</label>
+            <select id="hasPersonalLoan" name="hasPersonalLoan" required>
+                <option value="0">No</option>
+                <option value="1">Unknown</option>
+                <option value="2">Yes</option>
+            </select>
+
+            <label for="contact">Contact:</label>
+            <select id="contact" name="contact" required>
+                <option value="0">Cellular</option>
+                <option value="1">Telephone</option>
+            </select>
+
+            <label for="month">Month:</label>
+            <select id="month" name="month" required>
+                <option value="0">Apr</option>
+                <option value="1">Aug</option>
+                <option value="2">Dec</option>
+                <option value="3">Jul</option>
+                <option value="4">Jun</option>
+                <option value="5">Mar</option>
+                <option value="6">May</option>
+                <option value="7">Nov</option>
+                <option value="8">Oct</option>
+                <option value="9">Sep</option>
+            </select>
+
+            <label for="dayOfWeek">Day of Week:</label>
+            <select id="dayOfWeek" name="dayOfWeek" required>
+                <option value="0">Fri</option>
+                <option value="1">Mon</option>
+                <option value="2">Thu</option>
+                <option value="3">Tue</option>
+                <option value="4">Wed</option>
+            </select>
+
+            <label for="duration">Duration</label>
+            <input type="number" id="duration" name="duration">
+
+            <label for="campaign">Campaign</label>
+            <input type="number" id="campaign" name="campaign">
+
+            <label for="pdays">Pdays</label>
+            <input type="number" id="pdays" name="pdays">
+
+            <label for="previous">Previous</label>
+            <input type="number" id="previous" name="previous">
+
+            <label for="previousAttempt">Previous Attempt</label>
+            <select id="previousAttempt" name="previousAttempt" required>
+                <option value="0">Failure</option>
+                <option value="1">Nonexistent</option>
+                <option value="2">Success</option>
+            </select>
+
+            <button type="button" onclick="populateTable()">Submit</button>
+        </form>
+    </section>
+
+    <table id="prediction-table" style="display: none;">
+        <thead>
+            <tr>
+                <th>Age</th>
+                <th>Job</th>
+                <th>Marital</th>
+                <th>Education</th>
+                <th>Default</th>
+                <th>Housing Loan</th>
+                <th>Personal Loan</th>
+                <th>Contact</th>
+                <th>Month</th>
+                <th>Day of Week</th>
+                <th>Duration</th>
+                <th>Campaign</th>
+                <th>Pdays</th>
+                <th>Previous</th>
+                <th>Previous Attempt</th>
+                <th>Prediction</th>
+            </tr>
+        </thead>
+        <tbody id="prediction-body"></tbody>
+    </table>
+    
+    <script>
+        function populateTable() {
+            // Retrieve form data
+            const age = document.getElementById('age').value;
+            const job = document.getElementById('job').value;
+            const marital = document.getElementById('marital').value;
+            const education = document.getElementById('education').value;
+            const isDefault = document.getElementById('isDefault').value;
+            const hasHousingLoan = document.getElementById('hasHousingLoan').value;
+            const hasPersonalLoan = document.getElementById('hasPersonalLoan').value;
+            const contact = document.getElementById('contact').value;
+            const month = document.getElementById('month').value;
+            const dayOfWeek = document.getElementById('dayOfWeek').value;
+            const duration = document.getElementById('duration').value;
+            const campaign = document.getElementById('campaign').value;
+            const pdays = document.getElementById('pdays').value;
+            const previous = document.getElementById('previous').value;
+            const previousAttempt = document.getElementById('previousAttempt').value;
+    
+            // Make AJAX request to your backend for prediction
+            // Replace 'predict_endpoint' with the actual endpoint URL for prediction
+            fetch('/predict', {
+        method: 'POST',
+        body: new FormData(document.getElementById('data-form'))
+    })
+    .then(response => response.json())
+    .then(data => {
+        const predictionTable = document.getElementById('prediction-table');
+        const predictionBody = document.getElementById('prediction-body');
+        predictionBody.innerHTML = ''; // Clear previous rows
+    
+        // Create a new row for the prediction
+        const tr = document.createElement('tr');
+    
+        // Add each input value and the prediction to the table row
+        const fields = ['age', 'job', 'marital', 'education', 'isDefault', 'hasHousingLoan', 'hasPersonalLoan', 'contact', 'month', 'dayOfWeek', 'duration', 'campaign', 'pdays', 'previous', 'previousAttempt', 'prediction'];
+        fields.forEach(field => {
+            const td = document.createElement('td');
+            td.textContent = field === 'prediction' ? data.prediction : document.getElementById(field).value; // Retrieve input values
+            tr.appendChild(td);
+        });
+    
+        // Append the row to the table body
+        predictionBody.appendChild(tr);
+        predictionTable.style.display = 'table'; // Show prediction table
+    })
+    .catch(error => console.error('Error:', error));
+        }
+    </script>
+    
+        
+    </body>
+    </html>

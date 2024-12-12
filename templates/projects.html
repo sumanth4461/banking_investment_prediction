@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Team Members</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #f0f4f8, #d3e7ff);
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            background-attachment: scroll;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ecf0f1;
+        }
+
+        header nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 10px;
+        }
+
+        header nav ul li {
+            list-style: none;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #3498db;
+        }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        main {
+            margin-top: 120px;
+            padding: 20px;
+        }
+
+        #about-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1000px;
+            text-align: center;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        #about-content h2 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        #about-content p {
+            font-size: 1.1rem;
+            color: #f4f7fb;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .team-member-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .team-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            max-width: 1100px;
+            margin: 20px 0;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .team-member .role {
+            font-size: 1.2rem;
+            color: #3498db;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        @media (max-width: 768px) {
+            .team-member {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Team Members</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Project</a></li>
+                <li><a href="/projects">Projects by Members</a></li>
+                <li><a href="/prediction">Prediction</a></li>
+                <li><button onclick="window.location.href='/logout'" class="logout-btn">Log Out</button></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="about-content">
+        <h2>About Our Team</h2>
+        <p>We are a passionate team of individuals dedicated to providing cutting-edge solutions in banking investment analysis. Our expertise ranges from machine learning and data science to software development and project management. With a shared vision of making accurate and reliable predictions for better financial decision-making, we work seamlessly together to deliver the best results.</p>
+    </section>
+
+    <!-- Team Member 1 -->
+    <section class="team-member-container">
+        <div class="team-member">
+            <h3>Varshitha</h3>
+            <div class="role">Data Preprocessing and Analysis</div>
+            <p>Responsibilities:
+                Handle the dataset, including cleaning, renaming, and handling missing or duplicate data.
+                Perform exploratory data analysis (EDA) using univariate, bivariate, and multivariate plots.
+                Encode categorical data and prepare it for model training.
+                Document all steps in a clear and detailed manner for the team.
+            </p>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-member">
+            <h3>Chaitanya</h3>
+            <div class="role">Model Building and Tuning</div>
+            <p>Responsibilities:
+                Set up the PyCaret environment for machine learning.
+                Train and compare models using the dataset.
+                Optimize the best-performing model by tuning its hyperparameters.
+                Save the final tuned model for integration into the system.
+                Create visualizations (e.g., error plots, performance metrics) for evaluation.
+            </p>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-member">
+            <h3>Akash Anumolu</h3>
+            <div class="role">Web Development for Frontend and Backend Integration</div>
+            <p>Responsibilities:
+                Design and develop user-friendly web pages to display insights, model outputs, and allow interactions.
+                Implement the Flask framework for backend functionality.
+                Develop pages for uploading data, viewing results, and interacting with the trained model.
+                Ensure the web interface is responsive and user-friendly.</p>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="team-member">
+            <h3>Lakshman</h3>
+            <div class="role">User Authentication and SQL Integration</div>
+            <p>Responsibilities:
+                Set up an SQL database for user management and authentication.
+                Implement secure login and registration functionality in the Flask backend.
+                Ensure proper integration between the database and the web application.
+                Test and debug user authentication features to ensure security and reliability.</p>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

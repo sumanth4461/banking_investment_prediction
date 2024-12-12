@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction - Bank Investment Analysis</title>
+
+    <style>
+        /* Universal Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fb;
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            background-image: url('https://imgs.search.brave.com/ZKhluV6Y7GZTxFI6R_MF5ssYd7htWoB-lJA42ANvIIQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by93/b29kZW4tdGFibGUt/cHJvZHVjdC1iYWNr/Z3JvdW5kXzUzODc2/LTg5NDQ4LmpwZz9z/ZW10PWFpc19oeWJy/aWQ');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        header nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 10px;
+        }
+
+        header nav ul li {
+            list-style: none;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #3498db;
+        }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Main Section */
+        main {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Section Styling */
+        section {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 30px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15);
+        }
+
+        section h2 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        section p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background-color: #2e3b4e;
+            color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        code {
+            display: block;
+            padding: 10px;
+        }
+
+        /* Syntax Highlighting */
+        .language-python {
+            background-color: #2e3b4e;
+            color: #f5f5f5;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        }
+
+        .language-python span {
+            color: #ff79c6;
+        }
+
+        /* Image Styling */
+        img {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            section {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            pre {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Prediction</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Project</a></li>
+                <li><a href="/projects">Projects by Members</a></li>
+                <li><a href="/prediction">Prediction</a></li>
+                <li><button onclick="window.location.href='/logout'" class="logout-btn">Log Out</button></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Section 1: Overview -->
+    <section>
+        <h2>1. About Dataset</h2>
+        <p>The Portuguese bank is analyzing customer data to boost long-term investments. The goal is to identify customers likely to subscribe to long-term deposits and focus on targeted marketing campaigns.</p>
+    </section>
+
+    <!-- Section 2: Dataset -->
+    <section>
+        <h2>2. Dataset Preparation</h2>
+        <pre><code class="language-python">
+import pandas as pd
+import numpy as np
+
+# Load data
+df = pd.read_csv("/content/new_train.csv")
+
+df.head()
+        </code></pre>
+    </section>
+
+    <!-- Section 3: Handling Missing Values -->
+    <section>
+        <h2>3. Handling Missing Values and Duplicates</h2>
+        <pre><code class="language-python">
+import pandas as pd
+# Load data from a CSV file
+df = pd.read_csv("/content/new_train.csv")
+
+# Display basic information about the dataset
+print("Original Data Info:")
+print(df.info())
+
+# Handling Missing Values
+df.dropna(inplace=True)
+
+# Removing Duplicates
+df.drop_duplicates(inplace=True)
+
+print("\nCleaned Data Info:")
+print(df.info())
+        </code></pre>
+    </section>
+
+    <!-- Section 4: Data Visualization -->
+    <section>
+        <h2>4. Data Visualization</h2>
+        <pre><code class="language-python">
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Example: Univariate Analysis
+sns.countplot(data=df, x='marital', palette='cool')
+plt.show()
+        </code></pre>
+    </section>
+
+    <!-- Section 5: Machine Learning -->
+    <section>
+        <h2>5. Machine Learning Workflow</h2>
+        <pre><code class="language-python">
+from pycaret.classification import *
+
+# Setup
+env = setup(data=df, target='y', session_id=42)
+
+# Model Comparison
+best_model = compare_models()
+        </code></pre>
+    </section>
+</main>
+
+</body>
+</html>
